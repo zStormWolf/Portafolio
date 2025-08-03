@@ -1,49 +1,147 @@
-# Getting Started with Create React App
+# 🚀 Backend Developer Portfolio
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Elegant and modern portfolio website for backend developers, built with React and Chakra UI.
 
-## Available Scripts
+## ✨ Features
 
-In the project directory, you can run:
+- 🎨 **Modern Design** - Clean, elegant, and professional interface
+- 📱 **Fully Responsive** - Optimized for all devices and screen sizes
+- ⚡ **Fast Performance** - Built with React and optimized for speed
+- 🎭 **Smooth Animations** - Engaging user experience with subtle animations
+- 🌈 **Chakra UI** - Beautiful and accessible component library
+- 📧 **Contact Form** - Functional contact form for client inquiries
+- 🔍 **Project Filtering** - Easy navigation through project categories
+- 📊 **Skills Showcase** - Visual representation of technical skills
+
+## 🛠️ Built With
+
+- **React** - Frontend framework
+- **Chakra UI** - Component library and styling
+- **Heroicons** - Beautiful SVG icons
+- **Framer Motion** - Animation library
+- **Create React App** - Build toolchain
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js (version 14 or higher)
+- npm or yarn
+
+### Installation
+
+1. Clone the repository
+```bash
+git clone https://github.com/zStormWolf/backend-developer-portfolio.git
+```
+
+2. Navigate to the project directory
+```bash
+cd backend-developer-portfolio
+```
+
+3. Install dependencies
+```bash
+npm install
+```
+
+4. Start the development server
+```bash
+npm start
+```
+
+5. Open [http://localhost:3000](http://localhost:3000) to view it in your browser
+
+## 📦 Available Scripts
 
 ### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Runs the app in development mode.
 
 ### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Launches the test runner in interactive watch mode.
 
 ### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Builds the app for production to the `build` folder.
 
 ### `npm run eject`
-
 **Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 🎨 Customization
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Personal Information
+Update your personal information in the component files:
+- `src/components/Hero.jsx` - Main hero section
+- `src/components/About.jsx` - About section
+- `src/components/Contact.jsx` - Contact information
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Projects
+Add your projects in `src/components/Projects.jsx`:
+```javascript
+const projects = [
+  {
+    id: 1,
+    title: "Your Project Name",
+    description: "Project description",
+    image: "project-image-url",
+    technologies: ["Tech1", "Tech2", "Tech3"],
+    category: "api", // or "microservicios", "database", etc.
+    github: "github-url",
+    demo: "demo-url",
+    featured: true // for featured projects
+  }
+];
+```
 
-## Learn More
+### Skills
+Update your skills in `src/components/Skills.jsx`:
+```javascript
+const skills = [
+  { name: "Skill Name", level: 90 }, // level from 0-100
+];
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## 🌐 Deployment
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### GitHub Pages
+1. Install gh-pages: `npm install --save-dev gh-pages`
+2. Add to package.json: `"homepage": "https://zStormWolf.github.io/backend-developer-portfolio"`
+3. Add deploy scripts to package.json:
+```json
+"scripts": {
+  "predeploy": "npm run build",
+  "deploy": "gh-pages -d build"
+}
+```
+4. Deploy: `npm run deploy`
+
+### Netlify
+1. Build the project: `npm run build`
+2. Drag and drop the `build` folder to Netlify
+
+### Vercel
+1. Connect your GitHub repository to Vercel
+2. Vercel will automatically build and deploy
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 👨‍💻 Author
+
+**zStormWolf**
+- GitHub: [@zStormWolf](https://github.com/zStormWolf)
+
+## 🤝 Contributing
+
+Contributions, issues, and feature requests are welcome!
+
+## ⭐ Show your support
+
+Give a ⭐️ if this project helped you!
+
+---
+
+*Built with ❤️ by zStormWolf*
 
 ### Code Splitting
 
