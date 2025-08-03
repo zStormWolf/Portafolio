@@ -10,14 +10,20 @@ import {
   SimpleGrid,
   Flex,
   Link,
-
   Icon,
-
+  useColorModeValue,
 } from '@chakra-ui/react';
 import { HeartIcon } from "@heroicons/react/24/solid";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
+  
+  // Colores responsive al tema con mejor contraste
+  const bg = useColorModeValue('gray.800', 'gray.900');
+  const textColor = useColorModeValue('white', 'white'); // Blanco en ambos modos
+  const subtleTextColor = useColorModeValue('gray.300', 'gray.100'); // Más claro en modo oscuro
+  const borderColor = useColorModeValue('gray.700', 'gray.600');
+  const hoverColor = useColorModeValue('blue.400', 'blue.200'); // Más claro en modo oscuro
 
   const socialLinks = [
     {
@@ -58,15 +64,15 @@ const Footer = () => {
   ];
 
   return (
-    <Box as="footer" bg="gray.800" color="white">
+    <Box as="footer" bg={bg} color={textColor}>
       <Container maxW="7xl" py={12}>
         <SimpleGrid columns={{ base: 1, md: 3 }} spacing={8}>
           {/* Brand & Description */}
           <VStack align="start" spacing={4}>
-            <Heading as="h4" size="lg" className="gradient-text" fontWeight="bold">
+            <Heading as="h4" size="lg" bgGradient="linear(to-r, blue.600, purple.600)" bgClip="text" fontWeight="bold">
               DevPortfolio
             </Heading>
-            <Text color="gray.300" lineHeight="relaxed">
+            <Text color={subtleTextColor} lineHeight="relaxed">
               Desarrollador Backend especializado en crear soluciones robustas 
               y escalables que impulsan el futuro digital.
             </Text>
@@ -75,9 +81,9 @@ const Footer = () => {
                 <IconButton
                   key={index}
                   variant="ghost"
-                  color="gray.400"
+                  color={subtleTextColor}
                   _hover={{
-                    color: 'blue.400',
+                    color: hoverColor,
                     bg: 'whiteAlpha.100',
                   }}
                   as="a"
@@ -93,7 +99,7 @@ const Footer = () => {
 
           {/* Quick Links */}
           <VStack align="start" spacing={4}>
-            <Heading as="h6" size="md" color="white" fontWeight="semibold">
+            <Heading as="h6" size="md" color={textColor} fontWeight="semibold">
               Enlaces Rápidos
             </Heading>
             <VStack align="start" spacing={2}>
@@ -101,8 +107,8 @@ const Footer = () => {
                 <Link
                   key={index}
                   href={link.href}
-                  color="gray.300"
-                  _hover={{ color: 'blue.400' }}
+                  color={subtleTextColor}
+                  _hover={{ color: hoverColor }}
                   transition="colors 0.3s"
                 >
                   {link.name}
@@ -113,10 +119,10 @@ const Footer = () => {
 
           {/* Contact Info */}
           <VStack align="start" spacing={4}>
-            <Heading as="h6" size="md" color="white" fontWeight="semibold">
+            <Heading as="h6" size="md" color={textColor} fontWeight="semibold">
               Contacto
             </Heading>
-            <VStack align="start" spacing={2} color="gray.300">
+            <VStack align="start" spacing={2} color={subtleTextColor}>
               <Link
                 href="mailto:john.developer@email.com"
                 _hover={{ color: 'blue.400' }}
@@ -140,14 +146,14 @@ const Footer = () => {
 
         {/* Bottom Bar */}
         <Box>
-          <Box h="1px" bg="gray.700" my={8} />
+          <Box h="1px" bg={borderColor} my={8} />
           <Flex
             direction={{ base: 'column', md: 'row' }}
             justify="space-between"
             align="center"
             gap={4}
           >
-            <Text color="gray.400" textAlign={{ base: 'center', md: 'left' }}>
+            <Text color={subtleTextColor} textAlign={{ base: 'center', md: 'left' }}>
               © {currentYear} DevPortfolio. Todos los derechos reservados.
             </Text>
             <Flex align="center" gap={1} color="gray.400">

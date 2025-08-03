@@ -5,15 +5,16 @@ import {
   Text,
   Button,
   IconButton,
-
   useDisclosure,
   VStack,
   HStack,
   Stack,
   Icon,
   Link,
+  useColorModeValue,
 } from '@chakra-ui/react';
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
+import ThemeToggle from './ThemeToggle';
 
 const Header = () => {
   const [openNav, setOpenNav] = useState(false);
@@ -37,23 +38,29 @@ const Header = () => {
   }, []);
 
   const { isOpen, onToggle } = useDisclosure();
-  const bg = 'white';
-  const borderColor = 'gray.200';
+  
+  // Colores responsive al tema con mejor contraste
+  const bg = useColorModeValue('white', 'gray.800');
+  const borderColor = useColorModeValue('gray.200', 'gray.600');
+  const textColor = useColorModeValue('gray.600', 'gray.100'); // Más claro en modo oscuro
+  const hoverTextColor = useColorModeValue('blue.600', 'blue.200'); // Más claro en modo oscuro
+  const scrolledBg = useColorModeValue('rgba(255, 255, 255, 0.95)', 'rgba(26, 32, 44, 0.95)');
 
   const navItems = ["Inicio", "Sobre Mí", "Proyectos", "Habilidades", "Contacto"];
 
-  const NavLink = ({ children, href }) => (
+  const NavLink = ({ children, href, onClick }) => (
     <Text
       as="a"
       href={href}
       fontSize="md"
       fontWeight="medium"
-      color="gray.600"
+      color={textColor}
       _hover={{
-        color: 'blue.600',
+        color: hoverTextColor,
         textDecoration: 'none',
       }}
       transition="all 0.3s"
+      onClick={onClick}
     >
       {children}
     </Text>
@@ -64,8 +71,8 @@ const Header = () => {
       as="nav"
       position="sticky"
       top={0}
-      zIndex={10}
-      bg={scrolled ? 'rgba(255, 255, 255, 0.95)' : 'transparent'}
+      zIndex={1000}
+      bg={scrolled ? scrolledBg : 'transparent'}
       backdropFilter={scrolled ? 'blur(10px)' : 'none'}
       boxShadow={scrolled ? 'lg' : 'none'}
       transition="all 0.3s"
@@ -78,7 +85,8 @@ const Header = () => {
           href="#"
           fontSize="xl"
           fontWeight="bold"
-          className="gradient-text"
+          bgGradient="linear(to-r, blue.600, purple.600)"
+          bgClip="text"
           cursor="pointer"
         >
           DevPortfolio
@@ -97,6 +105,9 @@ const Header = () => {
             ))}
           </HStack>
 
+          {/* Theme Toggle */}
+          <ThemeToggle />
+          
           {/* Desktop CTA Button */}
           <Button
             size="sm"
@@ -141,6 +152,11 @@ const Header = () => {
               {item}
             </NavLink>
           ))}
+          
+          {/* Theme Toggle para móvil */}
+          <Box py={2}>
+            <ThemeToggle />
+          </Box>
           <Button
             size="sm"
             bgGradient="linear(to-r, blue.600, purple.600)"

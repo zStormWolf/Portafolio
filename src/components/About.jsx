@@ -12,7 +12,7 @@ import {
   SimpleGrid,
   Flex,
   Icon,
-
+  useColorModeValue,
 } from '@chakra-ui/react';
 import { 
   AcademicCapIcon,
@@ -54,8 +54,16 @@ const About = () => {
     }
   ];
 
-  const bg = 'white';
-  const cardBg = 'white';
+  // Colores responsive al tema con mejor contraste
+  const bg = useColorModeValue('white', 'gray.900');
+  const cardBg = useColorModeValue('white', 'gray.800');
+  const headingColor = useColorModeValue('gray.800', 'white');
+  const textColor = useColorModeValue('gray.600', 'gray.100'); // Más claro en modo oscuro
+  const skillTextColor = useColorModeValue('gray.700', 'white'); // Blanco en modo oscuro
+  const accentColor = useColorModeValue('blue.600', 'blue.200'); // Más claro en modo oscuro
+  const highlightIconBg = useColorModeValue('blue.50', 'gray.700');
+  const highlightIconColor = useColorModeValue('blue.600', 'blue.300');
+  const personalCardBg = useColorModeValue('linear(to-br, blue.50, purple.50)', 'linear(to-br, gray.800, gray.700)');
 
   return (
     <Box as="section" id="sobre-mí" bg={bg} py={{ base: 16, lg: 24 }} px={{ base: 4, sm: 6, lg: 8 }}>
@@ -66,18 +74,18 @@ const About = () => {
             <Text
               fontSize="sm"
               fontWeight="medium"
-              color="blue.600"
+              color={accentColor}
               textTransform="uppercase"
               letterSpacing="wide"
             >
               Conoce al Desarrollador
             </Text>
-            <Heading as="h2" size="2xl" color="gray.800">
-              Sobre <Text as="span" className="gradient-text">Mí</Text>
+            <Heading as="h2" size="2xl" color={headingColor}>
+              Sobre <Text as="span" bgGradient="linear(to-r, blue.600, purple.600)" bgClip="text">Mí</Text>
             </Heading>
             <Text
               fontSize="lg"
-              color="gray.600"
+              color={textColor}
               maxW="3xl"
               textAlign="center"
               lineHeight="relaxed"
@@ -100,23 +108,23 @@ const About = () => {
                 w="full"
               >
                 <CardBody p={8}>
-                  <Heading as="h3" size="lg" color="gray.800" mb={4}>
+                  <Heading as="h3" size="lg" color={headingColor} mb={4}>
                     Mi Historia
                   </Heading>
                   <VStack spacing={4} align="stretch">
-                    <Text color="gray.600" lineHeight="relaxed">
+                    <Text color={textColor} lineHeight="relaxed">
                       Comencé mi viaje en el desarrollo hace más de 5 años, cuando descubrí 
                       mi pasión por resolver problemas complejos a través del código. 
                       Desde entonces, he trabajado en una amplia variedad de proyectos, 
                       desde aplicaciones web simples hasta sistemas distribuidos de gran escala.
                     </Text>
-                    <Text color="gray.600" lineHeight="relaxed">
+                    <Text color={textColor} lineHeight="relaxed">
                       Mi enfoque se centra en escribir código limpio, mantenible y eficiente, 
                       siempre siguiendo las mejores prácticas de la industria. Me especializo 
                       en arquitecturas de microservicios, APIs RESTful y GraphQL, y tengo 
                       experiencia extensa con bases de datos tanto relacionales como NoSQL.
                     </Text>
-                    <Text color="gray.600" lineHeight="relaxed">
+                    <Text color={textColor} lineHeight="relaxed">
                       Cuando no estoy programando, disfruto contribuir a proyectos de código 
                       abierto, escribir artículos técnicos y mentorear a desarrolladores junior.
                     </Text>
@@ -134,17 +142,17 @@ const About = () => {
                 w="full"
               >
                 <CardBody p={8}>
-                  <Heading as="h3" size="lg" color="gray.800" mb={6}>
+                  <Heading as="h3" size="lg" color={headingColor} mb={6}>
                     Habilidades Técnicas
                   </Heading>
                   <VStack spacing={4}>
                     {skills.map((skill, index) => (
                       <Box key={index} w="full">
                         <Flex justify="space-between" mb={2}>
-                          <Text fontSize="sm" fontWeight="medium" color="gray.700">
+                          <Text fontSize="sm" fontWeight="medium" color={skillTextColor}>
                             {skill.name}
                           </Text>
-                          <Text fontSize="sm" color="blue.600" fontWeight="medium">
+                          <Text fontSize="sm" color={accentColor} fontWeight="medium">
                             {skill.level}%
                           </Text>
                         </Flex>
@@ -175,14 +183,14 @@ const About = () => {
                 >
                   <CardBody p={6}>
                     <Flex align="start" gap={4}>
-                      <Box p={3} bg="blue.50" borderRadius="lg">
-                        <Icon as={highlight.icon} boxSize={6} color="blue.600" />
+                      <Box p={3} bg={highlightIconBg} borderRadius="lg">
+                        <Icon as={highlight.icon} boxSize={6} color={highlightIconColor} />
                       </Box>
                       <Box>
-                        <Heading as="h4" size="md" color="gray.800" mb={2}>
+                        <Heading as="h4" size="md" color={headingColor} mb={2}>
                           {highlight.title}
                         </Heading>
-                        <Text color="gray.600">
+                        <Text color={textColor}>
                           {highlight.description}
                         </Text>
                       </Box>
@@ -193,7 +201,7 @@ const About = () => {
 
               {/* Personal Touch */}
               <Card
-                bgGradient="linear(to-br, blue.50, purple.50)"
+                bgGradient={personalCardBg}
                 shadow="md"
                 borderRadius="lg"
                 transition="all 0.3s"
@@ -201,10 +209,10 @@ const About = () => {
                 w="full"
               >
                 <CardBody p={8} textAlign="center">
-                  <Heading as="h4" size="lg" className="gradient-text" mb={4}>
+                  <Heading as="h4" size="lg" bgGradient="linear(to-r, blue.600, purple.600)" bgClip="text" mb={4}>
                     ¿Por qué Backend?
                   </Heading>
-                  <Text color="gray.600" lineHeight="relaxed">
+                  <Text color={textColor} lineHeight="relaxed">
                     Me fascina la arquitectura de sistemas y la lógica que impulsa 
                     las aplicaciones. Crear APIs elegantes, optimizar bases de datos 
                     y diseñar sistemas escalables es lo que me motiva cada día.

@@ -8,10 +8,9 @@ import {
   CardBody,
   Progress,
   VStack,
-  HStack,
   SimpleGrid,
   Flex,
-
+  useColorModeValue,
 } from '@chakra-ui/react';
 
 const Skills = () => {
@@ -77,8 +76,14 @@ const Skills = () => {
     "WebSockets"
   ];
 
-  const bg = 'white';
-  const cardBg = 'white';
+  // Colores responsive al tema con mejor contraste
+  const bg = useColorModeValue('white', 'gray.900');
+  const cardBg = useColorModeValue('white', 'gray.800');
+  const headingColor = useColorModeValue('gray.800', 'white');
+  const textColor = useColorModeValue('gray.600', 'gray.100'); // Más claro en modo oscuro
+  const skillTextColor = useColorModeValue('gray.700', 'white'); // Blanco en modo oscuro
+  const accentColor = useColorModeValue('blue.600', 'blue.200'); // Más claro en modo oscuro
+  const toolsBg = useColorModeValue('white', 'gray.700');
 
   return (
     <Box as="section" id="habilidades" bg={bg} py={{ base: 16, lg: 24 }} px={{ base: 4, sm: 6, lg: 8 }}>
@@ -89,18 +94,18 @@ const Skills = () => {
             <Text
               fontSize="sm"
               fontWeight="medium"
-              color="blue.600"
+              color={accentColor}
               textTransform="uppercase"
               letterSpacing="wide"
             >
               Expertise Técnico
             </Text>
-            <Heading as="h2" size="2xl" color="gray.800">
-              Mis <Text as="span" className="gradient-text">Habilidades</Text>
+            <Heading as="h2" size="2xl" color={headingColor}>
+              Mis <Text as="span" bgGradient="linear(to-r, blue.600, purple.600)" bgClip="text">Habilidades</Text>
             </Heading>
             <Text
               fontSize="lg"
-              color="gray.600"
+              color={textColor}
               maxW="3xl"
               textAlign="center"
               lineHeight="relaxed"
@@ -122,17 +127,17 @@ const Skills = () => {
                 _hover={{ transform: 'translateY(-4px)', shadow: 'lg' }}
               >
                 <CardBody p={8}>
-                  <Heading as="h3" size="lg" color="gray.800" mb={6} textAlign="center">
+                  <Heading as="h3" size="lg" color={headingColor} mb={6} textAlign="center">
                     {category.title}
                   </Heading>
                   <VStack spacing={6}>
                     {category.skills.map((skill, skillIndex) => (
                       <Box key={skillIndex} w="full">
                         <Flex justify="space-between" align="center" mb={2}>
-                          <Text fontSize="sm" fontWeight="medium" color="gray.700">
+                          <Text fontSize="sm" fontWeight="medium" color={skillTextColor}>
                             {skill.name}
                           </Text>
-                          <Text fontSize="sm" color="blue.600" fontWeight="medium">
+                          <Text fontSize="sm" color={accentColor} fontWeight="medium">
                             {skill.level}%
                           </Text>
                         </Flex>
@@ -152,7 +157,8 @@ const Skills = () => {
 
           {/* Tools & Technologies */}
           <Card
-            bgGradient="linear(to-br, blue.50, purple.50)"
+            bg={useColorModeValue('linear(to-br, blue.50, purple.50)', 'gray.800')}
+            bgGradient={useColorModeValue('linear(to-br, blue.50, purple.50)', 'linear(to-br, gray.800, gray.700)')}
             shadow="md"
             borderRadius="lg"
             transition="all 0.3s"
@@ -160,14 +166,14 @@ const Skills = () => {
             w="full"
           >
             <CardBody p={8}>
-              <Heading as="h3" size="lg" color="gray.800" mb={8} textAlign="center">
+              <Heading as="h3" size="lg" color={headingColor} mb={8} textAlign="center">
                 Herramientas & Tecnologías
               </Heading>
               <SimpleGrid columns={{ base: 2, md: 3, lg: 4 }} spacing={4}>
                 {tools.map((tool, index) => (
                   <Box
                     key={index}
-                    bg="white"
+                    bg={toolsBg}
                     p={4}
                     borderRadius="lg"
                     shadow="sm"
@@ -181,8 +187,8 @@ const Skills = () => {
                     <Text 
                       fontSize="sm" 
                       fontWeight="medium" 
-                      color="gray.700"
-                      _hover={{ color: 'blue.600' }}
+                      color={skillTextColor}
+                      _hover={{ color: accentColor }}
                       transition="colors 0.3s"
                     >
                       {tool}
@@ -195,7 +201,7 @@ const Skills = () => {
 
           {/* Soft Skills */}
           <Box w="full">
-            <Heading as="h3" size="lg" color="gray.800" mb={8} textAlign="center">
+            <Heading as="h3" size="lg" color={headingColor} mb={8} textAlign="center">
               Habilidades Blandas
             </Heading>
             <SimpleGrid columns={{ base: 1, md: 2, lg: 4 }} spacing={6}>
@@ -227,10 +233,10 @@ const Skills = () => {
                   textAlign="center"
                 >
                   <CardBody p={6}>
-                    <Heading as="h4" size="md" color="gray.800" mb={3}>
+                    <Heading as="h4" size="md" color={headingColor} mb={3}>
                       {softSkill.title}
                     </Heading>
-                    <Text fontSize="sm" color="gray.600">
+                    <Text fontSize="sm" color={textColor}>
                       {softSkill.description}
                     </Text>
                   </CardBody>

@@ -13,7 +13,7 @@ import {
   Card,
   CardBody,
   SimpleGrid,
-
+  useColorModeValue,
 } from '@chakra-ui/react';
 import { 
   CodeBracketIcon, 
@@ -23,6 +23,23 @@ import {
 } from "@heroicons/react/24/outline";
 
 const Hero = () => {
+  // Colores responsive al tema con mejor contraste
+  const bgGradient = useColorModeValue(
+    'linear(to-br, gray.50, blue.50)',
+    'linear(to-br, gray.900, gray.800)'
+  );
+  const textColor = useColorModeValue('gray.600', 'gray.100'); // Más claro en modo oscuro
+  const headingColor = useColorModeValue('gray.800', 'white');
+  const cardBg = useColorModeValue('white', 'gray.800');
+  const decorativeColor = useColorModeValue('blue.100', 'gray.700');
+  const iconBg = useColorModeValue('white', 'gray.700');
+  const iconTextColor = useColorModeValue('gray.600', 'white');
+  const profileCardBg = useColorModeValue('whiteAlpha.800', 'gray.800');
+  const profileTextColor = useColorModeValue('gray.600', 'gray.100');
+  const profileHeadingColor = useColorModeValue('gray.800', 'white');
+  const profileAccentColor = useColorModeValue('blue.600', 'blue.200');
+  const techIconColor = useColorModeValue('blue.600', 'blue.300');
+
   const techIcons = [
     { icon: CodeBracketIcon, name: "Backend Development" },
     { icon: ServerIcon, name: "API Design" },
@@ -37,7 +54,7 @@ const Hero = () => {
       display="flex"
       alignItems="center"
       justifyContent="center"
-      bgGradient="linear(to-br, gray.50, blue.50)"
+      bgGradient={bgGradient}
       position="relative"
       overflow="hidden"
     >
@@ -49,7 +66,7 @@ const Hero = () => {
           right="-40"
           w="80"
           h="80"
-          bg="blue.200"
+          bg={decorativeColor}
           borderRadius="full"
           mixBlendMode="multiply"
           filter="blur(40px)"
@@ -62,7 +79,7 @@ const Hero = () => {
           left="-40"
           w="80"
           h="80"
-          bg="purple.200"
+          bg={decorativeColor}
           borderRadius="full"
           mixBlendMode="multiply"
           filter="blur(40px)"
@@ -75,7 +92,7 @@ const Hero = () => {
           left="40"
           w="80"
           h="80"
-          bg="pink.200"
+          bg={decorativeColor}
           borderRadius="full"
           mixBlendMode="multiply"
           filter="blur(40px)"
@@ -95,7 +112,7 @@ const Hero = () => {
             <Text
               fontSize="sm"
               fontWeight="medium"
-              color="blue.600"
+              color={useColorModeValue('blue.600', 'blue.300')}
               textTransform="uppercase"
               letterSpacing="wide"
             >
@@ -106,11 +123,11 @@ const Hero = () => {
               as="h1"
               size={{ base: 'xl', md: '2xl', lg: '3xl' }}
               fontWeight="bold"
-              color="gray.800"
+              color={headingColor}
               lineHeight="tight"
             >
               Construyendo el{" "}
-              <Text as="span" className="gradient-text">
+              <Text as="span" bgGradient="linear(to-r, blue.600, purple.600)" bgClip="text">
                 futuro digital
               </Text>{" "}
               desde el servidor
@@ -118,7 +135,7 @@ const Hero = () => {
             
             <Text
               fontSize="lg"
-              color="gray.600"
+              color={textColor}
               lineHeight="relaxed"
               maxW={{ base: 'full', lg: '2xl' }}
             >
@@ -159,7 +176,7 @@ const Hero = () => {
                   <VStack key={index} spacing={2}>
                     <Box
                       p={3}
-                      bg="white"
+                      bg={iconBg}
                       borderRadius="lg"
                       shadow="md"
                       transition="all 0.3s"
@@ -168,9 +185,9 @@ const Hero = () => {
                         transform: 'translateY(-4px)',
                       }}
                     >
-                      <Icon as={tech.icon} boxSize={6} color="blue.600" />
+                      <Icon as={tech.icon} boxSize={6} color={techIconColor} />
                     </Box>
-                    <Text fontSize="xs" color="gray.600" textAlign="center">
+                    <Text fontSize="xs" color={iconTextColor} textAlign="center" fontWeight="medium">
                       {tech.name}
                     </Text>
                   </VStack>
@@ -184,7 +201,7 @@ const Hero = () => {
             <Card
               maxW="md"
               w="full"
-              bg="whiteAlpha.800"
+              bg={profileCardBg}
               backdropFilter="blur(10px)"
               shadow="xl"
               borderRadius="lg"
@@ -211,33 +228,33 @@ const Hero = () => {
                   </Heading>
                 </Box>
                 
-                <Heading as="h3" size="lg" color="gray.800" mb={2}>
+                <Heading as="h3" size="lg" color={profileHeadingColor} mb={2}>
                   John Developer
                 </Heading>
                 
-                <Text fontSize="sm" color="blue.600" fontWeight="medium" mb={4}>
+                <Text fontSize="sm" color={profileAccentColor} fontWeight="medium" mb={4}>
                   Senior Backend Developer
                 </Text>
                 
-                <Text color="gray.600" mb={6}>
+                <Text color={profileTextColor} mb={6}>
                   +5 años de experiencia creando soluciones backend escalables 
                   con tecnologías modernas.
                 </Text>
 
                 <HStack justify="center" spacing={6}>
                   <VStack spacing={1}>
-                    <Heading as="h4" size="md" color="blue.600" fontWeight="bold">
+                    <Heading as="h4" size="md" color={profileAccentColor} fontWeight="bold">
                       50+
                     </Heading>
-                    <Text fontSize="xs" color="gray.600">
+                    <Text fontSize="xs" color={profileTextColor}>
                       Proyectos
                     </Text>
                   </VStack>
                   <VStack spacing={1}>
-                    <Heading as="h4" size="md" color="blue.600" fontWeight="bold">
+                    <Heading as="h4" size="md" color={profileAccentColor} fontWeight="bold">
                       15+
                     </Heading>
-                    <Text fontSize="xs" color="gray.600">
+                    <Text fontSize="xs" color={profileTextColor}>
                       Tecnologías
                     </Text>
                   </VStack>

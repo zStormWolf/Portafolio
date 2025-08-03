@@ -10,13 +10,12 @@ import {
   SimpleGrid,
   VStack,
   HStack,
-
   Card,
   CardBody,
   CardFooter,
   Flex,
   Icon,
-
+  useColorModeValue,
 } from '@chakra-ui/react';
 import { 
   EyeIcon,
@@ -111,8 +110,12 @@ const Projects = () => {
 
   const featuredProjects = projects.filter(project => project.featured);
 
-  const bg = 'gray.50';
-  const cardBg = 'white';
+  // Colores responsive al tema con mejor contraste
+  const bg = useColorModeValue('gray.50', 'gray.900');
+  const cardBg = useColorModeValue('white', 'gray.800');
+  const headingColor = useColorModeValue('gray.800', 'white');
+  const textColor = useColorModeValue('gray.600', 'gray.100'); // Más claro en modo oscuro
+  const accentColor = useColorModeValue('blue.600', 'blue.200'); // Más claro en modo oscuro
 
   return (
     <Box as="section" id="proyectos" bg={bg} py={{ base: 16, lg: 24 }} px={{ base: 4, sm: 6, lg: 8 }}>
@@ -123,18 +126,18 @@ const Projects = () => {
             <Text
               fontSize="sm"
               fontWeight="medium"
-              color="blue.600"
+              color={accentColor}
               textTransform="uppercase"
               letterSpacing="wide"
             >
               Portafolio
             </Text>
-            <Heading as="h2" size="2xl" color="gray.800">
+            <Heading as="h2" size="2xl" color={headingColor}>
               Proyectos Destacados
             </Heading>
             <Text
               fontSize="lg"
-              color="gray.600"
+              color={textColor}
               maxW="2xl"
               textAlign="center"
             >
@@ -181,7 +184,7 @@ const Projects = () => {
                     </Box>
                   </Box>
                   <CardBody p={6}>
-                    <Text color="gray.600" mb={4} lineHeight="relaxed">
+                    <Text color={textColor} mb={4} lineHeight="relaxed">
                       {project.description}
                     </Text>
                     
